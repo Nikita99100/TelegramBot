@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="The server and bot are brought to a decent state">
+      <change afterPath="$PROJECT_DIR$/botapi/static/file.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/botapi/static/zahar.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/messages.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/messages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/msghandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/msghandler.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go Application" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="$PROJECT_DIR$/../../go1.15.2" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jQ0QVRrXhJcgLzIEysI9dXvm1Q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go Application" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/botapi/static" />
+      <recent name="$PROJECT_DIR$/botapi" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build TelegramBot/botapi">
+    <configuration name="go build TelegramBot" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TelegramBot" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="TelegramBot" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build TelegramBot/alan" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TelegramBot" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/alan/main.go" />
+      <package value="TelegramBot/alan" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build TelegramBot/botapi" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TelegramBot" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/botapi/main.go" />
+      <package value="TelegramBot/botapi" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build TelegramBot/webserver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TelegramBot" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/webserver/main.go" />
+      <package value="TelegramBot/webserver" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build TelegramBot/botapi" />
+        <item itemvalue="Go Build.go build TelegramBot/webserver" />
+        <item itemvalue="Go Build.go build TelegramBot" />
+        <item itemvalue="Go Build.go build TelegramBot/alan" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="The server and bot are brought to a decent state" />
+    <option name="LAST_COMMIT_MESSAGE" value="The server and bot are brought to a decent state" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="115" key="#Deployment" timestamp="1605002928711">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="115" key="#Deployment/0.0.1440.900@0.0.1440.900" timestamp="1605002928711" />
+    <state x="458" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604916002616">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1604916002616" />
+    <state width="1398" height="145" key="GridCell.Tab.0.bottom" timestamp="1604919038513">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="79" key="GridCell.Tab.0.bottom/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124752" />
+    <state width="1398" height="69" key="GridCell.Tab.0.bottom/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337228" />
+    <state width="1398" height="79" key="GridCell.Tab.0.bottom/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253072" />
+    <state width="1398" height="145" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604919038513" />
+    <state width="1398" height="145" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1604918022319" />
+    <state width="1398" height="145" key="GridCell.Tab.0.center" timestamp="1604919038510">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="79" key="GridCell.Tab.0.center/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124750" />
+    <state width="1398" height="69" key="GridCell.Tab.0.center/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337226" />
+    <state width="1398" height="79" key="GridCell.Tab.0.center/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253070" />
+    <state width="1398" height="145" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604919038510" />
+    <state width="1398" height="145" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1604918022317" />
+    <state width="1398" height="145" key="GridCell.Tab.0.left" timestamp="1604919038508">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="79" key="GridCell.Tab.0.left/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124749" />
+    <state width="1398" height="69" key="GridCell.Tab.0.left/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337225" />
+    <state width="1398" height="79" key="GridCell.Tab.0.left/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253068" />
+    <state width="1398" height="145" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604919038508" />
+    <state width="1398" height="145" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1604918022315" />
+    <state width="1398" height="145" key="GridCell.Tab.0.right" timestamp="1604919038511">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="79" key="GridCell.Tab.0.right/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124751" />
+    <state width="1398" height="69" key="GridCell.Tab.0.right/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337227" />
+    <state width="1398" height="79" key="GridCell.Tab.0.right/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253071" />
+    <state width="1398" height="145" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604919038511" />
+    <state width="1398" height="145" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1604918022318" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1604913681003">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604913681003" />
+    <state x="0" y="0" width="1440" height="900" key="dock-window-1" timestamp="1604503028191">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.23.1440.813@0.23.1440.813" timestamp="1604503028191" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1603798374681">
+      <screen x="-1440" y="89" width="1440" height="900" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603798374681" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1604498780807">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="-1055" y="285" width="670" height="676" key="search.everywhere.popup/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603794817596" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1604498780807" />
+  </component>
+</project>
