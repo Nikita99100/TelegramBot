@@ -31,5 +31,4 @@ func main() {
 		}
 		bot.Send(msg)
 	}
-
 }
