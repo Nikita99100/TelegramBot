@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/pkg/errors"
 	"io/ioutil"
 	"net/http"
@@ -39,7 +40,8 @@ func addTask(r *http.Request) error {
 		Title: task.UserTask,
 	}
 	ourUser.Tasks = append(ourUser.Tasks, result)
-	users[FindUserIndex(ourUser.ID)] = ourUser
+	fmt.Println(ourUser)
+	//users[FindUserIndex(ourUser.ID)] =
 	return nil
 }
 func outputTask(r *http.Request) ([]Task, error) {
@@ -57,4 +59,7 @@ func outputTask(r *http.Request) ([]Task, error) {
 		return nil, errors.Wrap(err, "Failed to find tasks for current ID.")
 	}
 	return output, nil
+}
+func deleteTask(r *http.Request) {
+
 }

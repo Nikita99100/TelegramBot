@@ -7,27 +7,15 @@ type User struct {
 
 var users []User
 
-func FindUser(id string) User {
-	for _, us := range users {
-		if us.ID == id {
-			return us
-		}
-	}
-	users = append(users, User{
-		ID:    id,
-		Tasks: nil,
-	})
-	return users[len(users)-1]
-}
-func FindUserIndex(id string) int {
+func FindUser(id string) *User {
 	for i, us := range users {
 		if us.ID == id {
-			return i
+			return &users[i]
 		}
 	}
 	users = append(users, User{
 		ID:    id,
 		Tasks: nil,
 	})
-	return len(users) - 1
+	return &users[len(users)-1]
 }

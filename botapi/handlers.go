@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/Syfaro/telegram-bot-api"
 	"github.com/pkg/errors"
 )
 
@@ -30,6 +31,10 @@ func ListTasks(userID string) (string, error) {
 	}
 	return structsToString(tasks), nil
 }
-func GetFile() {
+func GetFile(chatId int64) (tgbotapi.DocumentConfig, error) {
+	return tgbotapi.NewDocumentUpload(chatId, "static/file.txt"), nil
+}
+func DoTask(chatId int64, taskIndex int) error {
 
+	return nil
 }
