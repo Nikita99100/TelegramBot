@@ -10,6 +10,11 @@ type ReqStruct struct {
 	UserId string `json:"user_id"`
 	Task   string `json:"user_task"`
 }
+type Config struct {
+	ServerUrl           string
+	ListTaskUrl   		string
+	AddTaskUrl 		  	string
+}
 
 func structsToString(structs []Task) string {
 	s := ""

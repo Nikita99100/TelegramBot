@@ -10,7 +10,7 @@ func AddTask(userID string, task string) (string, error) {
 		UserId: userID,
 		Task:   task,
 	}
-	url := ServerUrl + AddTaskUrl
+	url := configFile.ServerUrl + configFile.AddTaskUrl
 	fmt.Println(request)
 	err := MakeRequest("POST", url, request, nil)
 	if err != nil {
@@ -23,12 +23,11 @@ func ListTasks(userID string) (string, error) {
 	request := ReqStruct{
 		UserId: userID,
 	}
-	url := ServerUrl + ListTaskUrl
+	url := configFile.ServerUrl + configFile.ListTaskUrl
 	var tasks []Task
 	err := MakeRequest("GET", url, request, &tasks)
 	if err != nil {
 		return "", errors.Wrap(err, "Request list task failed")
 	}
-
 	return structsToString(tasks), nil
 }

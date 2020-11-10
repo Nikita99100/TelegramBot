@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Syfaro/telegram-bot-api"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -9,6 +10,7 @@ import (
 var logs = logrus.New()
 
 func main() {
+	fmt.Println(configFile)
 	bot, err := tgbotapi.NewBotAPI("1158930916:AAH1CZKaNxGhDJrNg6w0SakIH-48cH4Jl9o")
 	if err != nil {
 		logs.Fatal(errors.Wrap(err, "Failed connect to bot"))
