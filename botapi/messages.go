@@ -16,6 +16,10 @@ func StartMessage(chat *tgbotapi.Chat) (tgbotapi.MessageConfig, error) {
 	msg.ParseMode = "Html"
 	return msg, nil
 }
+func GetFileMessage(chatId int64) (tgbotapi.Chattable, error) {
+	file := tgbotapi.NewDocumentShare(chatId, "static/file.txt")
+	return file, nil
+}
 func AddTaskMessage(chatId int64, task string) (tgbotapi.MessageConfig, error) {
 	msgTxt, err := AddTask(strconv.FormatInt(chatId, 10), task)
 	if err != nil {

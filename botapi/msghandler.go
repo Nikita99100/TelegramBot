@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func MsgHandler(msgReceive *tgbotapi.Message) (tgbotapi.MessageConfig, error) {
+func MsgHandler(msgReceive *tgbotapi.Message) (tgbotapi.Chattable, error) {
 	msgTxt := CmdClipper(msgReceive)
 	msgSend, err := CmdHandler(msgReceive.Command(), msgTxt, msgReceive.Chat)
 	if err != nil {
@@ -15,10 +15,15 @@ func MsgHandler(msgReceive *tgbotapi.Message) (tgbotapi.MessageConfig, error) {
 	return msgSend, nil
 }
 
-func CmdHandler(command string, text string, chat *tgbotapi.Chat) (tgbotapi.MessageConfig, error) {
-	var msg tgbotapi.MessageConfig
+func CmdHandler(command string, text string, chat *tgbotapi.Chat) (tgbotapi.Chattable, error) {
+	var msg tgbotapi.Chattable
 	var err error
 	switch command {
+	case "get":
+		msg, err = GetFileMessage(chat.ID)
+		if err != nil {
+			return tgbotapi.MessageConfig{}, errors.Wrap(err, "Create GetFileMessage error")
+		}
 	case "add":
 		msg, err = AddTaskMessage(chat.ID, text)
 		if err != nil {

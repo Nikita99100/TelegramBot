@@ -11,7 +11,6 @@ func AddTask(userID string, task string) (string, error) {
 		Task:   task,
 	}
 	url := ServerUrl + AddTaskUrl
-	fmt.Println(request)
 	err := MakeRequest("POST", url, request, nil)
 	if err != nil {
 		return "", errors.Wrap(err, "Add task failed")
@@ -29,6 +28,8 @@ func ListTasks(userID string) (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "Request list task failed")
 	}
-
 	return structsToString(tasks), nil
+}
+func GetFile() {
+
 }

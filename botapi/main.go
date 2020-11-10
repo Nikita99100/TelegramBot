@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Syfaro/telegram-bot-api"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -27,6 +28,7 @@ func main() {
 		if err != nil {
 			logs.Error(errors.Wrap(err, "Failed to handle message"))
 		}
+		fmt.Println(msg)
 		bot.Send(msg)
 	}
 
