@@ -1,0 +1,376 @@
+Index: botapi/structuries.go
+===================================================================
+diff --git a/botapi/structuries.go b/botapi/structuries.go
+deleted file mode 100644
+--- a/botapi/structuries.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ /dev/null	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
+@@ -1,25 +0,0 @@
+-package main
+-
+-import "fmt"
+-
+-type Task struct {
+-	Id   string `json:"id"`
+-	Task string `json:"title"`
+-}
+-type ReqStruct struct {
+-	UserId string `json:"user_id"`
+-	Task   string `json:"user_task"`
+-}
+-type Config struct {
+-	ServerUrl   string
+-	ListTaskUrl string
+-	AddTaskUrl  string
+-}
+-
+-func structsToString(structs []Task) string {
+-	s := ""
+-	for _, v := range structs {
+-		s += fmt.Sprintf("%s. %s\n", v.Id, v.Task)
+-	}
+-	return s
+-}
+Index: botapi/handlers.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/pkg/errors\"\n)\n\nfunc AddTask(userID string, task string) (string, error) {\n\trequest := ReqStruct{\n\t\tUserId: userID,\n\t\tTask:   task,\n\t}\n\turl := configFile.ServerUrl + configFile.AddTaskUrl\n\tfmt.Println(request)\n\terr := MakeRequest(\"POST\", url, request, nil)\n\tif err != nil {\n\t\treturn \"\", errors.Wrap(err, \"Add task failed\")\n\t}\n\treturn fmt.Sprintf(\"Added \\\"%s\\\" to your task list.\\n\", task), nil\n}\n\nfunc ListTasks(userID string) (string, error) {\n\trequest := ReqStruct{\n\t\tUserId: userID,\n\t}\n\turl := configFile.ServerUrl + configFile.AddTaskUrl\n\tvar tasks []Task\n\terr := MakeRequest(\"GET\", url, request, &tasks)\n\tif err != nil {\n\t\treturn \"\", errors.Wrap(err, \"Request list task failed\")\n\t}\n\treturn structsToString(tasks), nil\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/handlers.go b/botapi/handlers.go
+--- a/botapi/handlers.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/botapi/handlers.go	(date 1605088537741)
+@@ -10,7 +10,7 @@
+ 		UserId: userID,
+ 		Task:   task,
+ 	}
+-	url := configFile.ServerUrl + configFile.AddTaskUrl
++	url := config.ServerUrl+ ":" + config.Port + config.AddTaskUrl
+ 	fmt.Println(request)
+ 	err := MakeRequest("POST", url, request, nil)
+ 	if err != nil {
+@@ -23,11 +23,11 @@
+ 	request := ReqStruct{
+ 		UserId: userID,
+ 	}
+-	url := configFile.ServerUrl + configFile.AddTaskUrl
++	url := config.ServerUrl + ":" + config.Port + config.ListTaskUrl
+ 	var tasks []Task
+ 	err := MakeRequest("GET", url, request, &tasks)
+ 	if err != nil {
+ 		return "", errors.Wrap(err, "Request list task failed")
+ 	}
+-	return structsToString(tasks), nil
++	return tasksToString(tasks), nil
+ }
+Index: botapi/configs.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport \"github.com/spf13/viper\"\n\nvar ServerUrl = \"http://localhost:8000\"\nvar ListTaskUrl = \"/api/tasks/\"\nvar AddTaskUrl = \"/api/tasks/create/\"\n\nvar configFile Config\n\nfunc configParse() {\n\tconfig := viper.New()\n\tconfig.SetConfigFile(\"conf.toml\")\n\tconfig.ReadInConfig()\n\tconfig.Unmarshal(&configFile)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/configs.go b/botapi/configs.go
+--- a/botapi/configs.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/botapi/configs.go	(date 1605088537789)
+@@ -1,16 +1,27 @@
+ package main
+ 
+-import "github.com/spf13/viper"
++import (
++	"github.com/spf13/viper"
++)
+ 
+-var ServerUrl = "http://localhost:8000"
+-var ListTaskUrl = "/api/tasks/"
+-var AddTaskUrl = "/api/tasks/create/"
++type Config struct {
++	ServerUrl   string
++	Port        string
++	ListTaskUrl string
++	AddTaskUrl  string
++}
+ 
+-var configFile Config
++var config Config
+ 
+-func configParse() {
+-	config := viper.New()
+-	config.SetConfigFile("conf.toml")
+-	config.ReadInConfig()
+-	config.Unmarshal(&configFile)
++func init(){
++	configFile := viper.New()
++	configFile.SetConfigFile("botapi/conf.toml")
++	err := configFile.ReadInConfig()
++	if err != nil {
++		logs.Warn(err, "Cant read config")
++	}
++	errMar := configFile.Unmarshal(&config)
++	if errMar != nil {
++		logs.Warn(err, "Cant unmarshal config")
++	}
+ }
+Index: botapi/conf.toml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>serverurl = \"http://localhost:8000\"\nlisttaskurl = \"/api/tasks/\"\naddtaskurl = \"/api/tasks/create/\"
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/conf.toml b/botapi/conf.toml
+--- a/botapi/conf.toml	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/botapi/conf.toml	(date 1605088537685)
+@@ -1,3 +1,4 @@
+-serverurl = "http://localhost:8000"
++serverurl = "http://localhost"
++port = "8000"
+ listtaskurl = "/api/tasks/"
+ addtaskurl = "/api/tasks/create/"
+\ No newline at end of file
+Index: botapi/tasks.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/tasks.go b/botapi/tasks.go
+new file mode 100644
+--- /dev/null	(date 1605088537869)
++++ b/botapi/tasks.go	(date 1605088537869)
+@@ -0,0 +1,17 @@
++package main
++
++import "fmt"
++
++type Task struct {
++	Id   string `json:"id"`
++	Task string `json:"title"`
++}
++
++
++func tasksToString(structs []Task) string {
++	s := ""
++	for _, v := range structs {
++		s += fmt.Sprintf("%s. %s\n", v.Id, v.Task)
++	}
++	return s
++}
+Index: botapi/msghandler.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport (\n\t\"github.com/Syfaro/telegram-bot-api\"\n\t\"github.com/pkg/errors\"\n\t\"strings\"\n)\n\nfunc MsgHandler(msgReceive *tgbotapi.Message) (tgbotapi.MessageConfig, error) {\n\tmsgTxt := CmdClipper(msgReceive)\n\tmsgSend, err := CmdHandler(msgReceive.Command(), msgTxt, msgReceive.Chat)\n\tif err != nil {\n\t\treturn tgbotapi.MessageConfig{}, errors.Wrap(err, \"Failed to handle command\")\n\t}\n\treturn msgSend, nil\n}\n\nfunc CmdHandler(command string, text string, chat *tgbotapi.Chat) (tgbotapi.MessageConfig, error) {\n\tvar msg tgbotapi.MessageConfig\n\tvar err error\n\tswitch command {\n\tcase \"add\":\n\t\tmsg, err = AddTaskMessage(chat.ID, text)\n\t\tif err != nil {\n\t\t\treturn tgbotapi.MessageConfig{}, errors.Wrap(err, \"Create AddTaskMessage error\")\n\t\t}\n\tcase \"list\":\n\t\tmsg, err = ListTaskMessage(chat.ID)\n\t\tif err != nil {\n\t\t\treturn tgbotapi.MessageConfig{}, errors.Wrap(err, \"Create ListTaskMessage error\")\n\t\t}\n\tcase \"start\":\n\t\tmsg, err = StartMessage(chat)\n\t\tif err != nil {\n\t\t\treturn tgbotapi.MessageConfig{}, errors.Wrap(err, \"Start command error\")\n\t\t}\n\tdefault:\n\t\tmsg = tgbotapi.NewMessage(chat.ID, \"Такой комманды нет\")\n\t}\n\treturn msg, nil\n}\n\nfunc CmdClipper(msg *tgbotapi.Message) string {\n\ttext := msg.Text\n\tif msg.Command() != \"\" {\n\t\ttext = strings.Join(strings.Split(text, \" \")[1:], \" \")\n\t}\n\treturn text\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/msghandler.go b/botapi/msghandler.go
+--- a/botapi/msghandler.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/botapi/msghandler.go	(date 1605017075780)
+@@ -35,7 +35,7 @@
+ 			return tgbotapi.MessageConfig{}, errors.Wrap(err, "Start command error")
+ 		}
+ 	default:
+-		msg = tgbotapi.NewMessage(chat.ID, "Такой комманды нет")
++		msg = tgbotapi.NewMessage(chat.ID, "Incorrect command, try again, please.")
+ 	}
+ 	return msg, nil
+ }
+Index: botapi/requests.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"github.com/pkg/errors\"\n\t\"io/ioutil\"\n\t\"net/http\"\n)\n\n//http://192.168.99.121:8000/api/tasks/create/\n\nfunc MakeRequest(method string, url string, payload, response interface{}) error {\n\tbody, err := json.Marshal(payload)\n\tif err != nil {\n\t\treturn errors.Wrap(err, \"failed to marshal a payload\")\n\t}\n\n\treq, err := http.NewRequest(method, url, bytes.NewBuffer(body))\n\tif err != nil {\n\t\treturn errors.Wrap(err, \"failed to create an http request\")\n\t}\n\n\treq.Header.Set(\"Content-Type\", \"application/json\")\n\tresp, err := http.DefaultClient.Do(req)\n\tif err != nil {\n\t\treturn errors.Wrap(err, fmt.Sprintf(\"failed to make a %s request\", method))\n\t}\n\tdefer resp.Body.Close()\n\n\tif resp.StatusCode >= http.StatusBadRequest {\n\t\tbody, err := ioutil.ReadAll(resp.Body)\n\t\tif err != nil {\n\t\t\treturn errors.Errorf(\"%s request to %s failed with status: %d\", method, url, resp.StatusCode)\n\t\t}\n\t\treturn errors.Errorf(\"%s request to %s failed with status: %d and body: %s\", method, url, resp.StatusCode, string(body))\n\t}\n\tif response != nil {\n\t\treturn errors.Wrap(json.NewDecoder(resp.Body).Decode(response), \"Failed to decode response\")\n\t}\n\treturn nil\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/requests.go b/botapi/requests.go
+--- a/botapi/requests.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/botapi/requests.go	(date 1605088537837)
+@@ -11,6 +11,11 @@
+ 
+ //http://192.168.99.121:8000/api/tasks/create/
+ 
++type ReqStruct struct {
++	UserId string `json:"user_id"`
++	Task   string `json:"user_task"`
++}
++
+ func MakeRequest(method string, url string, payload, response interface{}) error {
+ 	body, err := json.Marshal(payload)
+ 	if err != nil {
+Index: botapi/main.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport (\n\t\"github.com/Syfaro/telegram-bot-api\"\n\t\"github.com/pkg/errors\"\n\t\"github.com/sirupsen/logrus\"\n)\n\nvar logs = logrus.New()\n\nfunc main() {\n\tbot, err := tgbotapi.NewBotAPI(\"1158930916:AAH1CZKaNxGhDJrNg6w0SakIH-48cH4Jl9o\")\n\tif err != nil {\n\t\tlogs.Fatal(errors.Wrap(err, \"Failed connect to bot\"))\n\t}\n\tu := tgbotapi.NewUpdate(0)\n\tu.Timeout = 60\n\tupdates, err := bot.GetUpdatesChan(u)\n\tif err != nil {\n\t\tlogs.Fatal(errors.Wrap(err, \"Failed to get update\"))\n\t}\n\tfor update := range updates {\n\t\tif update.Message == nil {\n\t\t\tcontinue\n\t\t}\n\t\tmsg, err := MsgHandler(update.Message)\n\t\tif err != nil {\n\t\t\tlogs.Error(errors.Wrap(err, \"Failed to handle message\"))\n\t\t}\n\t\tbot.Send(msg)\n\t}\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/main.go b/botapi/main.go
+--- a/botapi/main.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/botapi/main.go	(date 1605013803278)
+@@ -1,6 +1,7 @@
+ package main
+ 
+ import (
++	"fmt"
+ 	"github.com/Syfaro/telegram-bot-api"
+ 	"github.com/pkg/errors"
+ 	"github.com/sirupsen/logrus"
+@@ -9,6 +10,7 @@
+ var logs = logrus.New()
+ 
+ func main() {
++	fmt.Println(config)
+ 	bot, err := tgbotapi.NewBotAPI("1158930916:AAH1CZKaNxGhDJrNg6w0SakIH-48cH4Jl9o")
+ 	if err != nil {
+ 		logs.Fatal(errors.Wrap(err, "Failed connect to bot"))
+@@ -29,5 +31,4 @@
+ 		}
+ 		bot.Send(msg)
+ 	}
+-
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"32ed4531-45e8-4fe9-b724-12696382be72\" name=\"Default Changelist\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/botapi/configs.go\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/botapi/configs.go\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/botapi/handlers.go\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/botapi/handlers.go\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/botapi/structuries.go\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/botapi/structuries.go\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/webserver/main.go\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/webserver/main.go\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"GOROOT\" path=\"/usr/local/go\" />\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1k5l8gGSuOkmQ1h01qqecIylRhS\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"go.import.settings.migrated\" value=\"true\" />\n    <property name=\"go.sdk.automatically.set\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"RunManager\">\n    <configuration default=\"true\" type=\"GoApplicationRunConfiguration\" factoryName=\"Go Application\">\n      <module name=\"TelegramBot\" />\n      <working_directory value=\"$PROJECT_DIR$\" />\n      <go_parameters value=\"-i\" />\n      <kind value=\"FILE\" />\n      <filePath value=\"$PROJECT_DIR$/\" />\n      <package value=\"some_tests/TelegramBot\" />\n      <directory value=\"$PROJECT_DIR$\" />\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"WindowStateProjectService\">\n    <state x=\"400\" y=\"94\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog\" timestamp=\"1604999289150\">\n      <screen x=\"0\" y=\"27\" width=\"1600\" height=\"822\" />\n    </state>\n    <state x=\"400\" y=\"94\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.822@0.27.1600.822\" timestamp=\"1604999289150\" />\n    <state x=\"583\" y=\"195\" width=\"424\" height=\"484\" key=\"FileChooserDialogImpl\" timestamp=\"1604998846541\">\n      <screen x=\"0\" y=\"27\" width=\"1600\" height=\"822\" />\n    </state>\n    <state x=\"583\" y=\"195\" width=\"424\" height=\"484\" key=\"FileChooserDialogImpl/0.27.1600.822@0.27.1600.822\" timestamp=\"1604998846541\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/.idea/workspace.xml	(date 1605088539237)
+@@ -1,11 +1,38 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="BranchesTreeState">
++    <expand>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++    </expand>
++    <select />
++  </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="32ed4531-45e8-4fe9-b724-12696382be72" name="Default Changelist" comment="">
++    <list default="true" id="32ed4531-45e8-4fe9-b724-12696382be72" name="Default Changelist" comment="Added config file">
++      <change afterPath="$PROJECT_DIR$/botapi/tasks.go" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/botapi/conf.toml" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/conf.toml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/botapi/configs.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/configs.go" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/botapi/structuries.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/structuries.go" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/webserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/main.go" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/botapi/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/main.go" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/botapi/msghandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/msghandler.go" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/botapi/requests.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/requests.go" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/botapi/structuries.go" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/webserver/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/tasks.go" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,11 +51,15 @@
+   <component name="PropertiesComponent">
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
++    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
++    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+     <property name="go.import.settings.migrated" value="true" />
+     <property name="go.sdk.automatically.set" value="true" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Go Build.go build some_tests/TelegramBot/webserver">
+     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+       <module name="TelegramBot" />
+       <working_directory value="$PROJECT_DIR$" />
+@@ -39,16 +70,46 @@
+       <directory value="$PROJECT_DIR$" />
+       <method v="2" />
+     </configuration>
++    <configuration name="go build some_tests/TelegramBot/botapi" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
++      <module name="TelegramBot" />
++      <working_directory value="$PROJECT_DIR$" />
++      <kind value="PACKAGE" />
++      <filePath value="$PROJECT_DIR$/botapi/main.go" />
++      <package value="some_tests/TelegramBot/botapi" />
++      <directory value="$PROJECT_DIR$" />
++      <method v="2" />
++    </configuration>
++    <configuration name="go build some_tests/TelegramBot/webserver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
++      <module name="TelegramBot" />
++      <working_directory value="$PROJECT_DIR$" />
++      <kind value="PACKAGE" />
++      <filePath value="$PROJECT_DIR$/webserver/main.go" />
++      <package value="some_tests/TelegramBot/webserver" />
++      <directory value="$PROJECT_DIR$" />
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Go Build.go build some_tests/TelegramBot/webserver" />
++        <item itemvalue="Go Build.go build some_tests/TelegramBot/botapi" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-  <component name="WindowStateProjectService">
+-    <state x="400" y="94" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604999289150">
+-      <screen x="0" y="27" width="1600" height="822" />
+-    </state>
+-    <state x="400" y="94" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.822@0.27.1600.822" timestamp="1604999289150" />
+-    <state x="583" y="195" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604998846541">
+-      <screen x="0" y="27" width="1600" height="822" />
+-    </state>
+-    <state x="583" y="195" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.822@0.27.1600.822" timestamp="1604998846541" />
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++    <option name="oldMeFiltersMigrated" value="true" />
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Added config file" />
++    <option name="LAST_COMMIT_MESSAGE" value="Added config file" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: webserver/tasks.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport (\n\t\"encoding/json\"\n\t\"github.com/pkg/errors\"\n\t\"io/ioutil\"\n\t\"net/http\"\n\t\"strconv\"\n)\n\ntype Task struct {\n\tID    string `json:\"id\"`\n\tTitle string `json:\"title\"`\n}\n\nfunc findTasks(inputID ResponseID) (output []Task, err error) {\n\tfor _, user := range users {\n\t\tif user.ID == inputID.UserID {\n\t\t\tfor _, task := range user.Tasks {\n\t\t\t\toutput = append(output, task)\n\t\t\t}\n\t\t}\n\t}\n\treturn output, nil\n}\nfunc addTask(r *http.Request) error {\n\tvar task ResponseTask\n\tbody, err := ioutil.ReadAll(r.Body)\n\tif err != nil {\n\t\treturn errors.Wrap(err, \"Failed to read request body.\")\n\t}\n\terr = json.Unmarshal(body, &task)\n\tif err != nil {\n\t\treturn errors.Wrap(err, \"Cant decode current task.\")\n\t}\n\tourUser := FindUser(task.UserID)\n\tresult := Task{\n\t\tID:    strconv.Itoa(len(ourUser.Tasks) + 1),\n\t\tTitle: task.UserTask,\n\t}\n\tourUser.Tasks = append(ourUser.Tasks, result)\n\tusers[FindUserIndex(ourUser.ID)] = ourUser\n\treturn nil\n}\nfunc outputTask(r *http.Request) ([]Task, error) {\n\tvar inputID ResponseID\n\tbody, err := ioutil.ReadAll(r.Body)\n\tif err != nil {\n\t\treturn nil, errors.Wrap(err, \"Failed to read request body.\")\n\t}\n\terr = json.Unmarshal(body, &inputID)\n\tif err != nil {\n\t\treturn nil, errors.Wrap(err, \"Unmarshal error\")\n\t}\n\toutput, err := findTasks(inputID)\n\tif err != nil {\n\t\treturn nil, errors.Wrap(err, \"Failed to find tasks for current ID.\")\n\t}\n\treturn output, nil\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/webserver/tasks.go b/webserver/tasks.go
+--- a/webserver/tasks.go	(revision 04367704981ab7eaac372d14e251f372eb1ffde0)
++++ b/webserver/tasks.go	(date 1605080191456)
+@@ -21,6 +21,9 @@
+ 			}
+ 		}
+ 	}
++	if len(output) == 0{
++		return nil, errors.Wrap(err, "Cant find any tasks.")
++	}
+ 	return output, nil
+ }
+ func addTask(r *http.Request) error {

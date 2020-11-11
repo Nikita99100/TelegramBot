@@ -1,0 +1,33 @@
+Index: botapi/handlers.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/pkg/errors\"\n)\n\nfunc AddTask(userID string, task string) (string, error) {\n\trequest := ReqStruct{\n\t\tUserId: userID,\n\t\tTask:   task,\n\t}\n\turl := configFile.ServerUrl + configFile.AddTaskUrl\n\tfmt.Println(request)\n\terr := MakeRequest(\"POST\", url, request, nil)\n\tif err != nil {\n\t\treturn \"\", errors.Wrap(err, \"Add task failed\")\n\t}\n\treturn fmt.Sprintf(\"Added \\\"%s\\\" to your task list.\\n\", task), nil\n}\n\nfunc ListTasks(userID string) (string, error) {\n\trequest := ReqStruct{\n\t\tUserId: userID,\n\t}\n\turl := configFile.ServerUrl + configFile.AddTaskUrl\n\tvar tasks []Task\n\terr := MakeRequest(\"GET\", url, request, &tasks)\n\tif err != nil {\n\t\treturn \"\", errors.Wrap(err, \"Request list task failed\")\n\t}\n\treturn structsToString(tasks), nil\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/botapi/handlers.go b/botapi/handlers.go
+--- a/botapi/handlers.go	
++++ b/botapi/handlers.go	
+@@ -10,7 +10,7 @@
+ 		UserId: userID,
+ 		Task:   task,
+ 	}
+-	url := configFile.ServerUrl + configFile.AddTaskUrl
++	url := config.ServerUrl+ ":" + config.Port + config.AddTaskUrl
+ 	fmt.Println(request)
+ 	err := MakeRequest("POST", url, request, nil)
+ 	if err != nil {
+@@ -23,11 +23,11 @@
+ 	request := ReqStruct{
+ 		UserId: userID,
+ 	}
+-	url := configFile.ServerUrl + configFile.AddTaskUrl
++	url := config.ServerUrl + ":" + config.Port + config.ListTaskUrl
+ 	var tasks []Task
+ 	err := MakeRequest("GET", url, request, &tasks)
+ 	if err != nil {
+ 		return "", errors.Wrap(err, "Request list task failed")
+ 	}
+-	return structsToString(tasks), nil
++	return tasksToString(tasks), nil
+ }
