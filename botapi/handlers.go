@@ -10,7 +10,7 @@ func AddTask(userID string, task string) (string, error) {
 		UserId: userID,
 		Task:   task,
 	}
-	url := config.ServerUrl + config.AddTaskUrl
+	url := configFile.ServerUrl + configFile.AddTaskUrl
 	fmt.Println(request)
 	err := MakeRequest("POST", url, request, nil)
 	if err != nil {
@@ -23,7 +23,7 @@ func ListTasks(userID string) (string, error) {
 	request := ReqStruct{
 		UserId: userID,
 	}
-	url := config.ServerUrl + config.ListTaskUrl
+	url := configFile.ServerUrl + configFile.AddTaskUrl
 	var tasks []Task
 	err := MakeRequest("GET", url, request, &tasks)
 	if err != nil {

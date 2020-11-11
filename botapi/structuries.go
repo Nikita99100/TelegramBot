@@ -11,9 +11,9 @@ type ReqStruct struct {
 	Task   string `json:"user_task"`
 }
 type Config struct {
-	ServerUrl           string
-	ListTaskUrl   		string
-	AddTaskUrl 		  	string
+	ServerUrl   string
+	ListTaskUrl string
+	AddTaskUrl  string
 }
 
 func structsToString(structs []Task) string {
