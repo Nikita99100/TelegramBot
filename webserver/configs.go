@@ -13,7 +13,7 @@ type Config struct {
 
 var config Config
 
-func init() {
+func init(){
 	configFile := viper.New()
 	configFile.SetConfigFile("webserver/conf.toml")
 	err := configFile.ReadInConfig()
