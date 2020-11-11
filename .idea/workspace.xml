@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7a2b0b1e-ea9c-468a-91a9-2a6adc6a9696" name="Default Changelist" comment="Merge remote-tracking branch 'origin/true_branch'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;botapi/handlers.go">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/structuries.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/tasks.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +41,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Go Build.go build some_tests/TelegramBot/botapi">
+  <component name="RunManager" selected="Go Build.go build some_tests/TelegramBot/webserver">
     <configuration name="go build some_tests/TelegramBot/botapi" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="TelegramBot" />
       <working_directory value="$PROJECT_DIR$" />
@@ -62,8 +62,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build some_tests/TelegramBot/botapi" />
         <item itemvalue="Go Build.go build some_tests/TelegramBot/webserver" />
+        <item itemvalue="Go Build.go build some_tests/TelegramBot/botapi" />
       </list>
     </recent_temporary>
   </component>

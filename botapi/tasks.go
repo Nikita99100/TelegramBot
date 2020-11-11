@@ -7,8 +7,6 @@ type Task struct {
 	Task string `json:"title"`
 }
 
-
-
 func tasksToString(structs []Task) string {
 	s := ""
 	for _, v := range structs {
