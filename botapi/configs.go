@@ -1,16 +1,27 @@
 package main
 
-import "github.com/spf13/viper"
+import (
+	"github.com/spf13/viper"
+)
 
-var ServerUrl = "http://localhost:8000"
-var ListTaskUrl = "/api/tasks/"
-var AddTaskUrl = "/api/tasks/create/"
+type Config struct {
+	ServerUrl   string
+	Port        string
+	ListTaskUrl string
+	AddTaskUrl  string
+}
 
-var configFile Config
+var config Config
 
-func configParse() {
-	config := viper.New()
-	config.SetConfigFile("conf.toml")
-	config.ReadInConfig()
-	config.Unmarshal(&configFile)
+func init(){
+	configFile := viper.New()
+	configFile.SetConfigFile("botapi/conf.toml")
+	err := configFile.ReadInConfig()
+	if err != nil {
+		logs.Warn(err, "Cant read config")
+	}
+	errMar := configFile.Unmarshal(&config)
+	if errMar != nil {
+		logs.Warn(err, "Cant unmarshal config")
+	}
 }

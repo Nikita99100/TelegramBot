@@ -1,3 +1,4 @@
-serverurl = "http://localhost:8000"
+serverurl = "http://localhost"
+port = "8000"
 listtaskurl = "/api/tasks/"
 addtaskurl = "/api/tasks/create/"

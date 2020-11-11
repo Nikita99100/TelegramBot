@@ -11,6 +11,11 @@ import (
 
 //http://192.168.99.121:8000/api/tasks/create/
 
+type ReqStruct struct {
+	UserId string `json:"user_id"`
+	Task   string `json:"user_task"`
+}
+
 func MakeRequest(method string, url string, payload, response interface{}) error {
 	body, err := json.Marshal(payload)
 	if err != nil {
