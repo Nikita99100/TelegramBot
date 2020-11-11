@@ -1,10 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 )
@@ -26,13 +24,9 @@ func findTasks(inputID ResponseID) (output []Task, err error) {
 }
 func addTask(r *http.Request) error {
 	var task ResponseTask
-	body, err := ioutil.ReadAll(r.Body)
+	err := unmarshalRequest(r, &task)
 	if err != nil {
-		return errors.Wrap(err, "Failed to read request body.")
-	}
-	err = json.Unmarshal(body, &task)
-	if err != nil {
-		return errors.Wrap(err, "Cant decode current task.")
+		return errors.Wrap(err, "Failed to unmarhal request")
 	}
 	ourUser := FindUser(task.UserID)
 	result := Task{
@@ -41,18 +35,13 @@ func addTask(r *http.Request) error {
 	}
 	ourUser.Tasks = append(ourUser.Tasks, result)
 	fmt.Println(ourUser)
-	//users[FindUserIndex(ourUser.ID)] =
 	return nil
 }
 func outputTask(r *http.Request) ([]Task, error) {
 	var inputID ResponseID
-	body, err := ioutil.ReadAll(r.Body)
+	err := unmarshalRequest(r, &inputID)
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to read request body.")
-	}
-	err = json.Unmarshal(body, &inputID)
-	if err != nil {
-		return nil, errors.Wrap(err, "Unmarshal error")
+		return nil, errors.Wrap(err, "Failed to unmarhal request")
 	}
 	output, err := findTasks(inputID)
 	if err != nil {
@@ -60,6 +49,14 @@ func outputTask(r *http.Request) ([]Task, error) {
 	}
 	return output, nil
 }
-func deleteTask(r *http.Request) {
-
+func deleteTask(r *http.Request) error {
+	var task ResponseTaskIndex
+	err := unmarshalRequest(r, &task)
+	if err != nil {
+		return errors.Wrap(err, "Failed to unmarhal request")
+	}
+	return nil
+}
+func RemoveTask(s []int, index int) []int {
+	return append(s[:index], s[index+1:]...)
 }

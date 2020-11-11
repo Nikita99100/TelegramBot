@@ -10,14 +10,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Added the ability to send a file">
+    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Юзеров починил">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/messages.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/messages.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/responses.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/responses.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/tasks.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/users.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +48,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -125,73 +122,7 @@
     <MESSAGE value="The server and bot are brought to a decent state" />
     <MESSAGE value="Добавлена" />
     <MESSAGE value="Added the ability to send a file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to send a file" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="155" y="140" key="#Deployment" timestamp="1605003415139">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="155" y="140" key="#Deployment/0.0.1440.900@0.0.1440.900" timestamp="1605003415139" />
-    <state x="458" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604916002616">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="458" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1604916002616" />
-    <state width="1398" height="145" key="GridCell.Tab.0.bottom" timestamp="1605010458956">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="79" key="GridCell.Tab.0.bottom/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124752" />
-    <state width="1398" height="69" key="GridCell.Tab.0.bottom/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337228" />
-    <state width="1398" height="79" key="GridCell.Tab.0.bottom/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253072" />
-    <state width="1398" height="145" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605010458956" />
-    <state width="1398" height="145" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1604918022319" />
-    <state width="1398" height="145" key="GridCell.Tab.0.center" timestamp="1605010458954">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="79" key="GridCell.Tab.0.center/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124750" />
-    <state width="1398" height="69" key="GridCell.Tab.0.center/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337226" />
-    <state width="1398" height="79" key="GridCell.Tab.0.center/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253070" />
-    <state width="1398" height="145" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605010458954" />
-    <state width="1398" height="145" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1604918022317" />
-    <state width="1398" height="145" key="GridCell.Tab.0.left" timestamp="1605010458953">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="79" key="GridCell.Tab.0.left/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124749" />
-    <state width="1398" height="69" key="GridCell.Tab.0.left/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337225" />
-    <state width="1398" height="79" key="GridCell.Tab.0.left/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253068" />
-    <state width="1398" height="145" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605010458953" />
-    <state width="1398" height="145" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1604918022315" />
-    <state width="1398" height="145" key="GridCell.Tab.0.right" timestamp="1605010458955">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="79" key="GridCell.Tab.0.right/-1440.112.1440.877/0.23.1440.813@0.23.1440.813" timestamp="1603786124751" />
-    <state width="1398" height="69" key="GridCell.Tab.0.right/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603804337227" />
-    <state width="1398" height="79" key="GridCell.Tab.0.right/-1440.89.1440.900/0.23.1440.813@-1440.89.1440.900" timestamp="1603794253071" />
-    <state width="1398" height="145" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605010458955" />
-    <state width="1398" height="145" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1604918022318" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1605004195744">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605004195744" />
-    <state x="518" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605003921314">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="518" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1605003921314" />
-    <state x="0" y="0" width="1440" height="900" key="dock-window-1" timestamp="1604503028191">
-      <screen x="0" y="23" width="1440" height="813" />
-    </state>
-    <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.23.1440.813@0.23.1440.813" timestamp="1604503028191" />
-    <state x="468" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1605003969541">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="468" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1605003969541" />
-    <state width="600" height="428" key="javadoc.popup" timestamp="1603798374681">
-      <screen x="-1440" y="89" width="1440" height="900" />
-    </state>
-    <state width="600" height="428" key="javadoc.popup/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603798374681" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1604498780807">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="-1055" y="285" width="670" height="676" key="search.everywhere.popup/-1440.89.1440.900/0.0.1440.900@-1440.89.1440.900" timestamp="1603794817596" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1604498780807" />
+    <MESSAGE value="Юзеров починил" />
+    <option name="LAST_COMMIT_MESSAGE" value="Юзеров починил" />
   </component>
 </project>
