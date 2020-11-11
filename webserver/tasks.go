@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"github.com/pkg/errors"
 	"net/http"
-	"strconv"
 )
 
 type Task struct {
-	ID    string `json:"id"`
 	Title string `json:"title"`
 }
 
@@ -30,7 +28,6 @@ func addTask(r *http.Request) error {
 	}
 	ourUser := FindUser(task.UserID)
 	result := Task{
-		ID:    strconv.Itoa(len(ourUser.Tasks) + 1),
 		Title: task.UserTask,
 	}
 	ourUser.Tasks = append(ourUser.Tasks, result)
@@ -49,16 +46,23 @@ func outputTask(r *http.Request) ([]Task, error) {
 	}
 	return output, nil
 }
-func deleteTask(r *http.Request) error {
+func deleteTask(r *http.Request) (string, error) {
 	var task ResponseTaskIndex
+	fmt.Println("delete")
 	err := unmarshalRequest(r, &task)
 	if err != nil {
-		return errors.Wrap(err, "Failed to unmarhal request")
+		return "FAILED", errors.Wrap(err, "Failed to unmarhal request")
 	}
-	return nil
 	ourUser := FindUser(task.UserID)
-	fmt.Println(ourUser.Tasks)
+	ourUser.Tasks, err = removeElement(ourUser.Tasks, task.TaskIndex-1)
+	if err != nil {
+		return "FAILED", nil
+	}
+	return "OK", nil
 }
-func RemoveTask(s []int, index int) []int {
-	return append(s[:index], s[index+1:]...)
+func removeElement(s []Task, index int) ([]Task, error) {
+	if index < len(s) {
+		return append(s[:index], s[index+1:]...), nil
+	}
+	return s, errors.New("Index out of range")
 }

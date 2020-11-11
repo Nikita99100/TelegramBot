@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/Syfaro/telegram-bot-api"
 	"github.com/pkg/errors"
+	"strconv"
 )
 
 func AddTask(userID string, task string) (string, error) {
@@ -29,12 +30,25 @@ func ListTasks(userID string) (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "Request list task failed")
 	}
-	return structsToString(tasks), nil
+	return tasksToString(tasks), nil
 }
 func GetFile(chatId int64) (tgbotapi.DocumentConfig, error) {
-	return tgbotapi.NewDocumentUpload(chatId, "static/file.txt"), nil
+	return tgbotapi.NewDocumentUpload(chatId, "botapi/static/file.txt"), nil
 }
-func DoTask(chatId int64, taskIndex int) error {
-
-	return nil
+func DoTask(chatId string, taskIndex string) (string, error) {
+	index, err := strconv.Atoi(taskIndex)
+	if err != nil {
+		return "", errors.Wrap(err, "Task index convert error")
+	}
+	request := ReqTaskIndex{
+		UserID:    chatId,
+		TaskIndex: index,
+	}
+	url := ServerUrl + DeleteTaskUrl
+	var response Response
+	err = MakeRequest("DELETE", url, request, &response)
+	if err != nil {
+		return "", errors.Wrap(err, "Request delete task failed")
+	}
+	return response.Status, nil
 }

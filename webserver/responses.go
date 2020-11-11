@@ -18,6 +18,9 @@ type ResponseTaskIndex struct {
 type ResponseID struct {
 	UserID string `json:"user_id"`
 }
+type Response struct {
+	Status string `json:"status"`
+}
 
 func unmarshalRequest(r *http.Request, payLoad interface{}) error {
 	body, err := ioutil.ReadAll(r.Body)
