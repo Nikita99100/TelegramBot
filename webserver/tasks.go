@@ -56,6 +56,8 @@ func deleteTask(r *http.Request) error {
 		return errors.Wrap(err, "Failed to unmarhal request")
 	}
 	return nil
+	ourUser := FindUser(task.UserID)
+	fmt.Println(ourUser.Tasks)
 }
 func RemoveTask(s []int, index int) []int {
 	return append(s[:index], s[index+1:]...)
