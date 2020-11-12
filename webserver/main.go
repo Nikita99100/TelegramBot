@@ -10,5 +10,5 @@ var logs = logrus.New()
 
 func main() {
 	router := NewRouter()
-	logs.Fatal(errors.Wrap(http.ListenAndServe(":8000", router), "Failed to start server"))
+	logs.Fatal(errors.Wrap(http.ListenAndServe(":"+config.Port, router), "Failed to start server"))
 }

@@ -12,7 +12,8 @@ func AddTask(userID string, task string) (string, error) {
 		UserId: userID,
 		Task:   task,
 	}
-	url := ServerUrl + AddTaskUrl
+	url := config.ServerUrl + ":" + config.Port + config.AddTaskUrl
+	fmt.Println(request)
 	err := MakeRequest("POST", url, request, nil)
 	if err != nil {
 		return "", errors.Wrap(err, "Add task failed")
@@ -24,7 +25,7 @@ func ListTasks(userID string) (string, error) {
 	request := ReqStruct{
 		UserId: userID,
 	}
-	url := ServerUrl + ListTaskUrl
+	url := config.ServerUrl + ":" + config.Port + config.ListTaskUrl
 	var tasks []Task
 	err := MakeRequest("GET", url, request, &tasks)
 	if err != nil {
@@ -44,7 +45,7 @@ func DoTask(chatId string, taskIndex string) (string, error) {
 		UserID:    chatId,
 		TaskIndex: index,
 	}
-	url := ServerUrl + DeleteTaskUrl
+	url := config.ServerUrl + ":" + config.Port + config.DoTaskUrl
 	var response Response
 	err = MakeRequest("DELETE", url, request, &response)
 	if err != nil {

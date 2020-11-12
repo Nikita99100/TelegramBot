@@ -9,7 +9,17 @@ import (
 	"net/http"
 )
 
-//http://192.168.99.121:8000/api/tasks/create/
+type ReqStruct struct {
+	UserId string `json:"user_id"`
+	Task   string `json:"user_task"`
+}
+type ReqTaskIndex struct {
+	UserID    string `json:"user_id"`
+	TaskIndex int    `json:"task_index"`
+}
+type Response struct {
+	Status string `json:"status"`
+}
 
 func MakeRequest(method string, url string, payload, response interface{}) error {
 	body, err := json.Marshal(payload)

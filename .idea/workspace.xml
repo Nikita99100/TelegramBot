@@ -10,18 +10,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="unmarshal Request">
+    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Add ability to mark task ass completed">
+      <change afterPath="$PROJECT_DIR$/botapi/conf.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webserver/conf.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webserver/configs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botapi/configs.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/configs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/messages.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/messages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/msghandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/msghandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/static/zahar.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/structuries.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/structuries.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/responses.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/responses.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/tasks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/requests.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/requests.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/structuries.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/tasks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +53,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/webserver" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,12 +63,16 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/webserver" />
+      <recent name="$PROJECT_DIR$/botapi" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/botapi/static" />
       <recent name="$PROJECT_DIR$/botapi" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build TelegramBot/botapi">
+  <component name="RunManager" selected="Go Build.go build TelegramBot/webserver">
     <configuration name="go build TelegramBot" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="TelegramBot" />
       <working_directory value="$PROJECT_DIR$" />
@@ -109,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build TelegramBot/botapi" />
         <item itemvalue="Go Build.go build TelegramBot/webserver" />
+        <item itemvalue="Go Build.go build TelegramBot/botapi" />
         <item itemvalue="Go Build.go build TelegramBot" />
         <item itemvalue="Go Build.go build TelegramBot/alan" />
       </list>
@@ -168,6 +170,7 @@
     <MESSAGE value="Added the ability to send a file" />
     <MESSAGE value="Юзеров починил" />
     <MESSAGE value="unmarshal Request" />
-    <option name="LAST_COMMIT_MESSAGE" value="unmarshal Request" />
+    <MESSAGE value="Add ability to mark task ass completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add ability to mark task ass completed" />
   </component>
 </project>
