@@ -17,6 +17,11 @@ type ReqTaskIndex struct {
 	UserID    string `json:"user_id"`
 	TaskIndex int    `json:"task_index"`
 }
+type ReqTaskValue struct {
+	UserID    string `json:"user_id"`
+	TaskIndex int    `json:"task_index"`
+	TaskValue string `json:"task_value"`
+}
 type Response struct {
 	Status string `json:"status"`
 }

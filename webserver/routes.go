@@ -33,4 +33,10 @@ var routes = Routes{
 		"/api/tasks/do/",
 		doTask,
 	},
+	Route{
+		Name:        "EditTask",
+		Method:      "PUT",
+		Pattern:     "/api/tasks/edit",
+		HandlerFunc: editTask,
+	},
 }

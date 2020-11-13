@@ -63,28 +63,28 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 }
 func doTask(w http.ResponseWriter, r *http.Request) {
 	var task ResponseTaskIndex
-	var status string
 	err := unmarshalRequest(r, &task)
 	if err != nil {
-		status = "FAILED"
 		logs.Error(err, "Failed to unmarshal request")
 	}
-	status, err = deleteTask(task)
+	err = deleteTask(task)
 	if err != nil {
 		logs.Error(errors.Wrap(err, "Failed to delete task"))
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("400 - Something bad happens :("))
 	}
-	response := Response{
-		Status: status,
-	}
-	err = json.NewEncoder(w).Encode(response)
-	if err != nil {
-		logs.Error(errors.Wrap(err, "Failed to encode response"))
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("400 - Something bad happens :("))
-	}
-}
-func updateTask(w http.ResponseWriter, r *http.Request){
 
+}
+func editTask(w http.ResponseWriter, r *http.Request){
+	var task ResponseTaskValue
+	err := unmarshalRequest(r, &task)
+	if err != nil {
+		logs.Error(err, "Failed to unmarshal request")
+		w.WriteHeader(http.StatusBadRequest)
+	}
+	err = updateTask(task)
+	if err != nil {
+		logs.Error(errors.Wrap(err, "Failed to delete task"))
+		w.WriteHeader(http.StatusBadRequest)
+	}
+	w.WriteHeader(http.StatusOK)
 }

@@ -35,28 +35,34 @@ func outputTask(inputID ResponseID) ([]Task, error) {
 	}
 	return output, nil
 }
-func deleteTask(task ResponseTaskIndex) (string, error) {
+func deleteTask(task ResponseTaskIndex) error {
 	var err error
 	ourUser := FindUser(task.UserID)
 	ourUser.Tasks, err = removeElement(ourUser.Tasks, task.TaskIndex-1)
 	if err != nil {
-		return "FAILED", nil
+		return err
 	}
-	return "OK", nil
+	return nil
 }
-/*func updateTask(task ResponseTaskIndex) (string, error){
+func updateTask(task ResponseTaskValue) error{
 	var err error
 	ourUser := FindUser(task.UserID)
-
-}*/
+	ourUser.Tasks, err = updateElement(ourUser.Tasks, task.TaskIndex-1, task.TaskValue)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 func removeElement(s []Task, index int) ([]Task, error) {
 	if index < len(s) {
 		return append(s[:index], s[index+1:]...), nil
 	}
 	return s, errors.New("Index out of range")
 }
-/*func udpateElement(s []Task, index int) ([]Task, error) {
+func updateElement(s []Task, index int, value string) ([]Task, error) {
 	if index < len(s) {
-		return append(s[:index], s[index+1:]...), nil
+		s[index].Title = value
+		return s, nil
 	}
-}*/
+	return s, errors.New("Index out of range")
+}

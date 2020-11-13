@@ -36,20 +36,38 @@ func ListTasks(userID string) (string, error) {
 func GetFile(chatId int64) (tgbotapi.DocumentConfig, error) {
 	return tgbotapi.NewDocumentUpload(chatId, "botapi/static/file.txt"), nil
 }
-func DoTask(chatId string, taskIndex string) (string, error) {
+func DoTask(chatId string, taskIndex string) error {
 	index, err := strconv.Atoi(taskIndex)
 	if err != nil {
-		return "", errors.Wrap(err, "Task index convert error")
+		return errors.Wrap(err, "Task index convert error")
 	}
 	request := ReqTaskIndex{
 		UserID:    chatId,
 		TaskIndex: index,
 	}
 	url := config.ServerUrl + ":" + config.Port + config.DoTaskUrl
-	var response Response
-	err = MakeRequest("DELETE", url, request, &response)
+	err = MakeRequest("DELETE", url, request, nil)
 	if err != nil {
-		return "", errors.Wrap(err, "Request delete task failed")
+		return errors.Wrap(err, "Request delete task failed")
 	}
-	return response.Status, nil
+	return nil
 }
+func EditTask(chatId string, taskData string) error {
+	index, value, err := spaceParse(taskData)
+	if err != nil{
+		logs.Warn(err)
+	}
+	request := ReqTaskValue{
+		UserID:    chatId,
+		TaskIndex: index,
+		TaskValue: value,
+	}
+	url := config.ServerUrl + ":" + config.Port + config.EditTaskUrl
+	err = MakeRequest("PUT", url, request, nil)
+	if err != nil {
+		return errors.Wrap(err, "Request edit task failed")
+	}
+	return nil
+}
+
+

@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Syfaro/telegram-bot-api"
 	"github.com/pkg/errors"
+	"strconv"
 	"strings"
 )
 
@@ -19,6 +21,8 @@ func CmdHandler(command string, text string, chat *tgbotapi.Chat) (tgbotapi.Chat
 	var msg tgbotapi.Chattable
 	var err error
 	switch command {
+	case "edit":
+		msg, err = EditTaskMessage(chat.ID, text)
 	case "do":
 		msg, err = DoTaskMessage(chat.ID, text)
 	case "get":
@@ -53,4 +57,19 @@ func CmdClipper(msg *tgbotapi.Message) string {
 		text = strings.Join(strings.Split(text, " ")[1:], " ")
 	}
 	return text
+}
+
+func spaceParse(text string) (int, string, error) {
+	s := strings.Split(text, " ")
+	fmt.Println(s)
+	index, err := strconv.Atoi(s[0])
+	if err != nil{
+		logs.Error(err, "Cant convert index")
+		return 0, "", err
+	}
+	if len(s[1]) == 0{
+		logs.Error("Task value was empty")
+		return 0, "", errors.New("Task value was empty")
+	}
+	return index, s[1], nil
 }
