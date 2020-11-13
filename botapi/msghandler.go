@@ -19,6 +19,8 @@ func CmdHandler(command string, text string, chat *tgbotapi.Chat) (tgbotapi.Chat
 	var msg tgbotapi.Chattable
 	var err error
 	switch command {
+	case "do":
+		msg, err = DoTaskMessage(chat.ID, text)
 	case "get":
 		msg, err = GetFileMessage(chat.ID)
 		if err != nil {

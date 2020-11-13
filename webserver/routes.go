@@ -22,9 +22,15 @@ var routes = Routes{
 		getTasks,
 	},
 	Route{
-		"GroupsIndex",
+		"CreateTask",
 		"POST",
 		"/api/tasks/create/",
 		createTask,
+	},
+	Route{
+		"DeleteTask",
+		"DELETE",
+		"/api/tasks/do/",
+		doTask,
 	},
 }

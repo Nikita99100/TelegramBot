@@ -5,18 +5,14 @@ import (
 )
 
 type Config struct {
-	ServerUrl   string
-	Port        string
-	ListTaskUrl string
-	AddTaskUrl  string
-	DoTaskUrl   string
+	Port string
 }
 
 var config Config
 
 func init() {
 	configFile := viper.New()
-	configFile.SetConfigFile("botapi/conf.toml")
+	configFile.SetConfigFile("webserver/conf.toml")
 	err := configFile.ReadInConfig()
 	if err != nil {
 		logs.Warn(err, "Cant read config")

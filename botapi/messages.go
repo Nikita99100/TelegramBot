@@ -17,7 +17,10 @@ func StartMessage(chat *tgbotapi.Chat) (tgbotapi.MessageConfig, error) {
 	return msg, nil
 }
 func GetFileMessage(chatId int64) (tgbotapi.Chattable, error) {
-	file := tgbotapi.NewDocumentShare(chatId, "static/file.txt")
+	file, err := GetFile(chatId)
+	if err != nil {
+		return nil, err
+	}
 	return file, nil
 }
 func AddTaskMessage(chatId int64, task string) (tgbotapi.MessageConfig, error) {
@@ -26,7 +29,6 @@ func AddTaskMessage(chatId int64, task string) (tgbotapi.MessageConfig, error) {
 		return tgbotapi.MessageConfig{}, errors.Wrap(err, "Failed AddTask command")
 	}
 	msg := tgbotapi.NewMessage(chatId, msgTxt)
-
 	return msg, nil
 }
 func ListTaskMessage(chatId int64) (tgbotapi.MessageConfig, error) {
@@ -36,4 +38,14 @@ func ListTaskMessage(chatId int64) (tgbotapi.MessageConfig, error) {
 	}
 	msg := tgbotapi.NewMessage(chatId, tasks)
 	return msg, nil
+}
+func DoTaskMessage(chatId int64, taskIndex string) (tgbotapi.Chattable, error) {
+	status, err := DoTask(strconv.FormatInt(chatId, 10), taskIndex)
+	if err != nil {
+		return tgbotapi.MessageConfig{}, errors.Wrap(err, "Failed to do task")
+	}
+	if status == "OK" {
+		return tgbotapi.NewMessage(chatId, "Task marked ass completed!!"), nil
+	}
+	return tgbotapi.NewVoiceUpload(chatId, "botapi/static/sound.mp3"), nil
 }
