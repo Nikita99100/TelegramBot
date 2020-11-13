@@ -7,6 +7,7 @@ import (
 	"github.com/pkg/errors"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 type ReqStruct struct {
@@ -21,6 +22,24 @@ type Response struct {
 	Status string `json:"status"`
 }
 
+func NewReq(userId string, task string) (ReqStruct, error) {
+	s := ReqStruct{
+		UserId: userId,
+		Task:   task,
+	}
+	return s, nil
+}
+func NewReqTaskIndex(userId string, taskIndex string) (ReqTaskIndex, error) {
+	index, err := strconv.Atoi(taskIndex)
+	if err != nil {
+		return ReqTaskIndex{}, errors.Wrap(err, "Task index convert error")
+	}
+	s := ReqTaskIndex{
+		UserID:    userId,
+		TaskIndex: index,
+	}
+	return s, nil
+}
 func MakeRequest(method string, url string, payload, response interface{}) error {
 	body, err := json.Marshal(payload)
 	if err != nil {

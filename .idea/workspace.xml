@@ -10,16 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Add ability to mark task ass completed">
-      <change afterPath="$PROJECT_DIR$/botapi/conf.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webserver/conf.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webserver/configs.go" afterDir="false" />
+    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Add configs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/configs.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/configs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botapi/requests.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/requests.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/botapi/structuries.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/tasks.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/tasks.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +166,7 @@
     <MESSAGE value="Юзеров починил" />
     <MESSAGE value="unmarshal Request" />
     <MESSAGE value="Add ability to mark task ass completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add ability to mark task ass completed" />
+    <MESSAGE value="Add configs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add configs" />
   </component>
 </project>
