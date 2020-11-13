@@ -22,9 +22,6 @@ type ReqTaskValue struct {
 	TaskIndex int    `json:"task_index"`
 	TaskValue string `json:"task_value"`
 }
-type Response struct {
-	Status string `json:"status"`
-}
 
 func MakeRequest(method string, url string, payload, response interface{}) error {
 	body, err := json.Marshal(payload)
@@ -38,6 +35,7 @@ func MakeRequest(method string, url string, payload, response interface{}) error
 	}
 
 	req.Header.Set("Content-Type", "application/json")
+
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("failed to make a %s request", method))

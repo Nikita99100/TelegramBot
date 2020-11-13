@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/Syfaro/telegram-bot-api"
 	"github.com/pkg/errors"
 	"strconv"
@@ -12,7 +11,7 @@ func MsgHandler(msgReceive *tgbotapi.Message) (tgbotapi.Chattable, error) {
 	msgTxt := CmdClipper(msgReceive)
 	msgSend, err := CmdHandler(msgReceive.Command(), msgTxt, msgReceive.Chat)
 	if err != nil {
-		return tgbotapi.MessageConfig{}, errors.Wrap(err, "Failed to handle command")
+		return msgSend, errors.Wrap(err, "Failed to handle command")
 	}
 	return msgSend, nil
 }
@@ -23,8 +22,14 @@ func CmdHandler(command string, text string, chat *tgbotapi.Chat) (tgbotapi.Chat
 	switch command {
 	case "edit":
 		msg, err = EditTaskMessage(chat.ID, text)
+		if err != nil {
+			return msg, errors.Wrap(err, "Create EditTaskMessage error")
+		}
 	case "do":
 		msg, err = DoTaskMessage(chat.ID, text)
+		if err != nil {
+			return msg, errors.Wrap(err, "Create DoTaskMessage error")
+		}
 	case "get":
 		msg, err = GetFileMessage(chat.ID)
 		if err != nil {
@@ -61,13 +66,16 @@ func CmdClipper(msg *tgbotapi.Message) string {
 
 func spaceParse(text string) (int, string, error) {
 	s := strings.Split(text, " ")
-	fmt.Println(s)
+	if len(s) != 2 {
+		logs.Error("Not enough arguments.")
+		return 0, "", errors.New("Not enough arguments.")
+	}
 	index, err := strconv.Atoi(s[0])
-	if err != nil{
+	if err != nil {
 		logs.Error(err, "Cant convert index")
 		return 0, "", err
 	}
-	if len(s[1]) == 0{
+	if len(s[1]) == 0 {
 		logs.Error("Task value was empty")
 		return 0, "", errors.New("Task value was empty")
 	}

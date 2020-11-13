@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a2b0b1e-ea9c-468a-91a9-2a6adc6a9696" name="Default Changelist" comment="Merge remote-tracking branch 'origin/true_branch'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;botapi/handlers.go">
+    <list default="true" id="7a2b0b1e-ea9c-468a-91a9-2a6adc6a9696" name="Default Changelist" comment="Added error handlers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/msghandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/msghandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/requests.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/requests.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/responses.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/responses.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +23,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../go1.15.2" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -24,6 +31,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1k8kiXibukAe2wlwUccOj1faIv4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -39,7 +47,25 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Go Build.go build some_tests/TelegramBot/webserver">
+  <component name="RunManager" selected="Go Build.go build some_tests/TelegramBot123/botapi">
+    <configuration name="go build some_tests/TelegramBot123/botapi" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TelegramBot" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/botapi/main.go" />
+      <package value="some_tests/TelegramBot123/botapi" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build some_tests/TelegramBot123/webserver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TelegramBot" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/webserver/main.go" />
+      <package value="some_tests/TelegramBot123/webserver" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build some_tests/TelegramBot/botapi" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="TelegramBot" />
       <working_directory value="$PROJECT_DIR$" />
@@ -60,6 +86,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build some_tests/TelegramBot123/botapi" />
+        <item itemvalue="Go Build.go build some_tests/TelegramBot123/webserver" />
         <item itemvalue="Go Build.go build some_tests/TelegramBot/webserver" />
         <item itemvalue="Go Build.go build some_tests/TelegramBot/botapi" />
       </list>
@@ -80,6 +108,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge remote-tracking branch 'origin/true_branch'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;botapi/handlers.go" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/true_branch'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;botapi/handlers.go" />
+    <MESSAGE value="Added error handlers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added error handlers" />
   </component>
 </project>

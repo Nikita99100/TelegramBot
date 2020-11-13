@@ -33,9 +33,11 @@ func ListTasks(userID string) (string, error) {
 	}
 	return tasksToString(tasks), nil
 }
+
 func GetFile(chatId int64) (tgbotapi.DocumentConfig, error) {
 	return tgbotapi.NewDocumentUpload(chatId, "botapi/static/file.txt"), nil
 }
+
 func DoTask(chatId string, taskIndex string) error {
 	index, err := strconv.Atoi(taskIndex)
 	if err != nil {
@@ -52,10 +54,12 @@ func DoTask(chatId string, taskIndex string) error {
 	}
 	return nil
 }
+
 func EditTask(chatId string, taskData string) error {
 	index, value, err := spaceParse(taskData)
-	if err != nil{
+	if err != nil {
 		logs.Warn(err)
+		return errors.Wrap(err, "Task data convert error")
 	}
 	request := ReqTaskValue{
 		UserID:    chatId,
@@ -69,5 +73,3 @@ func EditTask(chatId string, taskData string) error {
 	}
 	return nil
 }
-
-
