@@ -39,13 +39,19 @@ func ListTaskMessage(chatId int64) (tgbotapi.MessageConfig, error) {
 	msg := tgbotapi.NewMessage(chatId, tasks)
 	return msg, nil
 }
+
 func DoTaskMessage(chatId int64, taskIndex string) (tgbotapi.Chattable, error) {
-	status, err := DoTask(strconv.FormatInt(chatId, 10), taskIndex)
+	err := DoTask(strconv.FormatInt(chatId, 10), taskIndex)
+	fmt.Println(err)
 	if err != nil {
-		return tgbotapi.MessageConfig{}, errors.Wrap(err, "Failed to do task")
+		return tgbotapi.NewVoiceUpload(chatId, "botapi/static/sound.mp3"), errors.Wrap(err, "Failed to do task")
 	}
-	if status == "OK" {
-		return tgbotapi.NewMessage(chatId, "Task marked ass completed!!"), nil
+	return tgbotapi.NewMessage(chatId, "Task marked assss completed!!"), nil
+}
+func EditTaskMessage(chatId int64, taskIndex string) (tgbotapi.Chattable, error) {
+	err := EditTask(strconv.FormatInt(chatId, 10), taskIndex)
+	if err != nil {
+		return tgbotapi.NewVoiceUpload(chatId, "botapi/static/sound.mp3"), errors.Wrap(err, "Failed to edit task")
 	}
-	return tgbotapi.NewVoiceUpload(chatId, "botapi/static/sound.mp3"), nil
+	return tgbotapi.NewMessage(chatId, "Task was editetssss!!"), nil
 }

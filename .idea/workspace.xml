@@ -10,10 +10,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Add configs">
+    <list default="true" id="ea43425a-c46c-4cf6-888b-3728f801bbba" name="Default Changelist" comment="Structure creators">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/conf.toml" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/conf.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/configs.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/configs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botapi/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/messages.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/messages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botapi/msghandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/msghandler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botapi/requests.go" beforeDir="false" afterPath="$PROJECT_DIR$/botapi/requests.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/responses.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/responses.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/routes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/tasks.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,6 +174,7 @@
     <MESSAGE value="unmarshal Request" />
     <MESSAGE value="Add ability to mark task ass completed" />
     <MESSAGE value="Add configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add configs" />
+    <MESSAGE value="Structure creators" />
+    <option name="LAST_COMMIT_MESSAGE" value="Structure creators" />
   </component>
 </project>

@@ -33,18 +33,34 @@ func ListTasks(userID string) (string, error) {
 	return tasksToString(tasks), nil
 }
 
-func DoTask(chatId string, taskIndex string) (string, error) {
+func DoTask(chatId string, taskIndex string) error {
 	request, err := NewReqTaskIndex(chatId, taskIndex)
 	if err != nil {
-		return "", errors.Wrap(err, "Failed to create new req")
+		return errors.Wrap(err, "Failed to create new req")
 	}
 	url := config.ServerUrl + ":" + config.Port + config.DoTaskUrl
-	var response Response
-	err = MakeRequest("DELETE", url, request, &response)
+	err = MakeRequest("DELETE", url, request, nil)
 	if err != nil {
-		return "", errors.Wrap(err, "Request delete task failed")
+		return errors.Wrap(err, "Request delete task failed")
 	}
-	return response.Status, nil
+	return nil
+}
+func EditTask(chatId string, taskData string) error {
+	index, value, err := spaceParse(taskData)
+	if err != nil {
+		logs.Warn(err)
+	}
+	request := ReqTaskValue{
+		UserID:    chatId,
+		TaskIndex: index,
+		TaskValue: value,
+	}
+	url := config.ServerUrl + ":" + config.Port + config.EditTaskUrl
+	err = MakeRequest("PUT", url, request, nil)
+	if err != nil {
+		return errors.Wrap(err, "Request edit task failed")
+	}
+	return nil
 }
 
 func GetFile(chatId int64) (tgbotapi.DocumentConfig, error) {

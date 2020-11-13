@@ -10,6 +10,7 @@ type Config struct {
 	ListTaskUrl string
 	AddTaskUrl  string
 	DoTaskUrl   string
+	EditTaskUrl string
 }
 
 var config Config

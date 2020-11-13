@@ -21,6 +21,11 @@ type ReqTaskIndex struct {
 type Response struct {
 	Status string `json:"status"`
 }
+type ReqTaskValue struct {
+	UserID    string `json:"user_id"`
+	TaskIndex int    `json:"task_index"`
+	TaskValue string `json:"task_value"`
+}
 
 func NewReq(userId string, task string) (ReqStruct, error) {
 	s := ReqStruct{
